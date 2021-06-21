@@ -6,7 +6,7 @@ a web application that takes people's everyday passwords and turns them into a s
 
 Simply click the link below to go to the web app, hosted on Heroku.
 
-![Website](safekeep.herokuapp.com)
+(safekeep.herokuapp.com)
 
 ## Local Run Instructions
 
