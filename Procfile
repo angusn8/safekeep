@@ -1,1 +1,1 @@
-web: gunicorn safekeep:app
+web: gunicorn main:app

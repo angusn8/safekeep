@@ -4,6 +4,10 @@ a web application that takes people's everyday passwords and turns them into a s
 
 ## External run instructions
 
+Simply click the link below to go to the web app, hosted on Heroku.
+
+![Website](safekeep.herokuapp.com)
+
 ## Local Run Instructions
 
 1. Make sure the latest version of python and pip is installed on your machine

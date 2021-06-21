@@ -35,28 +35,5 @@ def passwords():
     else:
         return render_template("passwords.html", password=newPassword)
 
-"""
-@app.after_request
-def securePassword(response):
-    if request.path == "/passwords" and request.method == "POST":
-        oldPassword = request.form["currentPassword"]
-        newPassword = oldPassword
-        newPassword.replace("s", "$")
-        newPassword.replace("S", "$")
-        newPassword.replace("a", "@")
-        newPassword.replace("o", "0")
-        newPassword.replace("O", "0")
-        newPassword.replace("c", "(")
-        newPassword.replace("C", "(")
-        newPassword.replace("i", "1")
-        newPassword.replace("I", "1")
-        if "!" in newPassword:
-            newPassword = newPassword
-            return render_template("passwords.html")
-        else:
-            newPassword = newPassword + "!"
-            return render_template("passwords.html")
-    return response
-"""
 if __name__ == "__main__":
     app.run(debug=True)
