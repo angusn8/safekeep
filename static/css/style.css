@@ -63,6 +63,25 @@ img {
   outline-offset: 3px;
 }
 
+a, a:hover, a:active {
+  text-decoration: none;
+  color: var(--color-dark);
+}
+
+.btn {
+  display: inline-block;
+  padding: .5em 2.5em;
+  background: var(--color-accent);
+  color: var(--color-dark);
+  text-decoration: none;
+  cursor: pointer;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: var(--fw-bold);
+  transition: transform 200ms ease-in-out;
+}
+
 /* Typography */
 
 h1,

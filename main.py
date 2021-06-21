@@ -8,6 +8,10 @@ def about():
 
 @app.route("/passwords", methods=["POST", "GET"])
 def passwords():
+    return render_template("passwords.html")
+
+@app.route("/secure", methods=["POST", "GET"])
+def secure():
     newPassword = ""
     if request.method == "POST":
         oldPassword = request.form["currentPassword"]
@@ -28,12 +32,39 @@ def passwords():
             newPassword = "Pick a stronger password to start!"
         if "!" in newPassword:
             newPassword = newPassword
-            return render_template("passwords.html", password=newPassword)
+            return render_template("securepasswords.html", password=newPassword)
         else:
             newPassword = newPassword + "!"
-            return render_template("passwords.html", password=newPassword)
+            return render_template("securepasswords.html", password=newPassword)
     else:
-        return render_template("passwords.html", password=newPassword)
+        return render_template("securepasswords.html", password=newPassword)
+
+@app.route("/check", methods=["POST", "GET"])
+def check():
+    enteredPassword = ""
+    message = ""
+
+    def hasSpecialChars(word):
+        specialChars = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '+', '-', '_']
+        result = any(element in word for element in specialChars)
+        return result
+
+    def hasNums(word):
+        nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+        result = any(element in word for element in nums)
+        return result
+
+    if request.method == "POST":
+        enteredPassword = request.form["currentPassword"]
+        if enteredPassword.lower() == enteredPassword and hasSpecialChars(enteredPassword) == False and len(enteredPassword) < 12 and hasNums(enteredPassword) == False:
+            message = "WEAK"
+        if enteredPassword.lower() != enteredPassword or hasSpecialChars(enteredPassword) == True or len(enteredPassword) >= 12 or hasNums(enteredPassword) == True:
+            message = "MEDIUM STRENGTH"
+        if enteredPassword.lower() != enteredPassword and hasSpecialChars(enteredPassword) == True and len(enteredPassword) >= 12 and hasNums(enteredPassword) == True:
+            message = "STRONG"
+        return render_template("checkpasswords.html", message=message)
+    else:
+        return render_template("checkpasswords.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
