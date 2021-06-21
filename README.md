@@ -4,9 +4,7 @@ a web application that takes people's everyday passwords and turns them into a s
 
 ## External run instructions
 
-Simply click the link below to go to the web app, hosted on Heroku.
-
-![Website](google.com)
+go to safekeep.herokuapp.com in your web browser to view the live site, hosted by Heroku.
 
 ## Local Run Instructions
 
