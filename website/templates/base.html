@@ -32,13 +32,22 @@
         <span class="hamburger"> </span>
       </button>
       <nav class="nav">
-        <ul class="nav-list">
-          <li class="nav-item">
-            <a href="/" class="nav-link">About</a>
-          </li>
-          <li class="nav-item">
+        <ul class="nav-list list-inline mx-auto justify-content-center">
+          {% if user.is_authenticated %}
+          <li class="nav-item list-inline-item">
             <a href="/passwords" class="nav-link">Passwords</a>
           </li>
+          <li class="nav-item list-inline-item">
+            <a href="/logout" class="nav-link">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item list-inline-item">
+            <a href="/" class="nav-link">About</a>
+          </li>
+          <li class="nav-item list-inline-item">
+            <a href="/login" class="nav-link">Login</a>
+          </li>
+          {% endif %}
         </ul>
       </nav>
     </header>

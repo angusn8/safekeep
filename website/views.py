@@ -5,15 +5,20 @@ from sqlalchemy.sql import func
 
 views = Blueprint('views', __name__)
 
+
 @views.route("/")
 def about():
-    return render_template("index.html")
+    return render_template("index.html", user=current_user)
+
 
 @views.route("/passwords", methods=["POST", "GET"])
+@login_required
 def passwords():
-    return render_template("passwords.html")
+    return render_template("passwords.html", user=current_user)
+
 
 @views.route("/secure", methods=["POST", "GET"])
+@login_required
 def secure():
     newPassword = ""
     if request.method == "POST":
@@ -35,20 +40,23 @@ def secure():
             newPassword = "Pick a stronger password to start!"
         if "!" in newPassword:
             newPassword = newPassword
-            return render_template("securepasswords.html", password=newPassword)
+            return render_template("securepasswords.html", password=newPassword, user=current_user)
         else:
             newPassword = newPassword + "!"
-            return render_template("securepasswords.html", password=newPassword)
+            return render_template("securepasswords.html", password=newPassword, user=current_user)
     else:
-        return render_template("securepasswords.html", password=newPassword)
+        return render_template("securepasswords.html", password=newPassword, user=current_user)
+
 
 @views.route("/check", methods=["POST", "GET"])
+@login_required
 def check():
     enteredPassword = ""
     message = ""
 
     def hasSpecialChars(word):
-        specialChars = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '+', '-', '_']
+        specialChars = ['!', '@', '#', '$', '%',
+                        '^', '&', '*', '(', ')', '+', '-', '_']
         result = any(element in word for element in specialChars)
         return result
 
@@ -65,6 +73,6 @@ def check():
             message = "MEDIUM STRENGTH"
         if enteredPassword.lower() != enteredPassword and hasSpecialChars(enteredPassword) == True and len(enteredPassword) >= 12 and hasNums(enteredPassword) == True:
             message = "STRONG"
-        return render_template("checkpasswords.html", message=message)
+        return render_template("checkpasswords.html", message=message, user=current_user)
     else:
-        return render_template("checkpasswords.html")
+        return render_template("checkpasswords.html", user=current_user)

@@ -63,19 +63,21 @@ img {
   outline-offset: 3px;
 }
 
-a, a:hover, a:active {
+a,
+a:hover,
+a:active {
   text-decoration: none;
   color: var(--color-dark);
 }
 
 .btn {
   display: inline-block;
-  padding: .5em 2.5em;
+  padding: 0.5em 2.5em;
   background: var(--color-accent);
   color: var(--color-dark);
   text-decoration: none;
   cursor: pointer;
-  font-size: .8rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: var(--fw-bold);
@@ -207,4 +209,11 @@ header {
 
 .hamburger::after {
   bottom: 6px;
+}
+
+/* Sections */
+
+.color-link,
+.color-link:hover {
+  color: var(--color-accent);
 }
